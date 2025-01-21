@@ -1,0 +1,32 @@
+# Architecture
+
+- source code should be in src directory
+- GitHub actions should be in .github/workflows directory
+- use cases will be described as markdown user stories in the docs/use-cases directory
+- application will be developed as modulith
+- it will follow Domain Driven Design
+- it will have 4 layers: Application, Domain, Infrastructure, UserInterface
+- UserInterface
+  - HTTP layer will be in the UserInterface layer
+  - it will have controllers, views, and templates
+  - it will have HTMX for front-end reactivity
+  - it will see only Application layer
+  - it will just collects and validate request data and sends it to the Application layer
+  - it will just collects response data from the Application layer and sends it to the client
+  - every technology will have its own directory within the UserInterface layer, e.g. `UserInterface/Htmx`
+- Infrastructure
+  - it will have Elasticsearch as database and search
+  - it will have Elasticsearch client
+  - it will have Elasticsearch repository
+  - it will see only Domain layer
+  - it will implement interfaces defined in the Domain layer
+  - every technology will have its own directory within the Infrastructure layer, e.g. `Infrastructure/Elasticsearch`
+- Application
+  - it will have use cases
+  - it will have DTOs
+  - it will see only Domain layer
+  - it will glue UserInterface and Domain layer
+  - every kind of class will have its own directory within the Application layer, e.g. `Application/UseCase`
+- Domain
+  - it will have all the business logic
+  - every kind of class will have its own directory within the Domain layer, e.g. `Domain/ValueObject`
